@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#58d4ff">
+  <meta name="description" content="依照 Pokémon GO 的攻擊、防禦、HP 個體值，自動計算 IV 並產生可複製的寶可夢名稱。">
+  <title>Pokémon GO IV 名稱產生器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky-glow sky-glow-one"></div>
+  <div class="sky-glow sky-glow-two"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-ball" aria-hidden="true"><span></span></div>
+        <div>
+          <p class="eyebrow">TRAINER TOOL</p>
+          <h1>IV 名稱產生器</h1>
+        </div>
+      </div>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切換深色模式" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+        <span class="theme-text">深色</span>
+      </button>
+    </header>
+
+    <section class="hero-panel">
+      <div>
+        <span class="hero-badge">POKÉMON GO 風格</span>
+        <p>選擇攻擊、防禦與 HP，系統會自動換算 IV，並緊接在名稱後方轉成上標小字。</p>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit-ring"></div>
+        <div class="orbit-ball"><span></span></div>
+      </div>
+    </section>
+
+    <section class="glass-card input-card">
+      <div class="section-title-row">
+        <div>
+          <span class="section-kicker">01</span>
+          <h2>輸入名稱與個體值</h2>
+        </div>
+        <span class="formula-chip">IV = 總和 ÷ 45 × 100</span>
+      </div>
+
+      <label class="field-label" for="pokemonName">寶可夢名稱</label>
+      <input id="pokemonName" class="name-input" type="text" value="" maxlength="40" placeholder="例如：羅以淇" autocomplete="off">
+
+      <div class="stats-grid">
+        <section class="stat-card attack-card">
+          <div class="stat-heading">
+            <div><span class="stat-icon">⚔</span><span>攻擊</span></div>
+            <output id="attackValue">12</output>
+          </div>
+          <div id="attackButtons" class="number-grid" aria-label="攻擊個體值"></div>
+        </section>
+
+        <section class="stat-card defense-card">
+          <div class="stat-heading">
+            <div><span class="stat-icon">◆</span><span>防禦</span></div>
+            <output id="defenseValue">15</output>
+          </div>
+          <div id="defenseButtons" class="number-grid" aria-label="防禦個體值"></div>
+        </section>
+
+        <section class="stat-card hp-card">
+          <div class="stat-heading">
+            <div><span class="stat-icon">♥</span><span>HP</span></div>
+            <output id="hpValue">12</output>
+          </div>
+          <div id="hpButtons" class="number-grid" aria-label="HP 個體值"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="glass-card result-card">
+      <div class="section-title-row">
+        <div>
+          <span class="section-kicker">02</span>
+          <h2>生成結果</h2>
+        </div>
+        <div class="iv-medal">
+          <span>IV</span>
+          <strong id="ivNumber">87</strong>
+          <small>%</small>
+        </div>
+      </div>
+
+      <div class="result-meta">
+        <span>個體值總和</span>
+        <strong id="statTotal">39 / 45</strong>
+        <span class="rounding-note">四捨五入至整數</span>
+      </div>
+
+      <div class="circle-style">
+        <span class="field-label">圈圈數字樣式</span>
+        <div class="segmented-control">
+          <button id="filledStyle" class="style-button active" type="button">實心圈 ⓬</button>
+          <button id="outlineStyle" class="style-button" type="button">空心圈 ⑫</button>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <span class="field-label">名稱預覽</span>
+        <div class="preview-frame">
+          <div class="scan-line"></div>
+          <div id="preview" class="preview" aria-live="polite">亮班⁸⁷⓬⓯⓬</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="copyButton" class="primary-button" type="button"><span>複製名稱</span></button>
+        <button id="resetButton" class="secondary-button" type="button">重設</button>
+      </div>
+      <p id="copyStatus" class="copy-status" aria-live="polite"></p>
+    </section>
+
+    <footer>所有計算都在你的瀏覽器中完成，不會上傳任何資料。</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
